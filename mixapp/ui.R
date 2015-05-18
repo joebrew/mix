@@ -1,0 +1,100 @@
+
+library(shiny)
+
+shinyUI(fluidPage(
+
+  # Application title
+  titlePanel("Mix Market Data"),
+
+  # Sidebar with a slider input for number of bins
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput('range', 'Year range:',
+                  min = 1990, max = 2015,
+                  value = c(2005, 2015)),
+      selectInput('region', 'Region of interest:',
+                  choices = c('Africa',
+                              'East Asia and the Pacific',
+                              'Eastern Europe and Central Asia',
+                              'Latin America and The Caribbean',
+                              'Middle East and North Africa',
+                              'South Asia')),
+      selectInput('var', 'Variable of interest:',
+                  choice = c(
+                             "Assets",
+                             "Gross Loan Portfolio",
+                             "Equity",
+                             "Deposits",
+                             "Borrowings",
+                             "Capital asset ratio",
+                             "Debt to equity ratio",
+                             "Average loan balance per borrower",
+                             "Average loan balance per borrower   GNI per capita",
+                             "Average deposit balance per depositor",
+                             "Average deposit balance per depositor   GNI per capita",
+                             "Return on assets",
+                             "Return on equity",
+                             "Financial revenue  assets",
+                             "Yield on gross portfolio  nominal ",
+                             "Financial expense  assets",
+                             "Provision for loan impairment  assets",
+                             "Operating expense  assets",
+                             "Operating expense  loan portfolio",
+                             "Cost per borrower",
+                             "Borrowers per staff member",
+                             "Depositors per staff member",
+                             "Portfolio at risk  gt  30 days",
+                             "Write off ratio",
+                             "Personnel",
+                             "Number of active borrowers",
+                             "Number of depositors",
+                             "Active clients",
+                             "Administrative expense  assets",
+                             "Average deposit account balance",
+                             "Average deposit account balance   GNI per capita",
+                             "Average outstanding balance",
+                             "Average outstanding balance   GNI per capita",
+                             "Average salary  GNI per capita",
+                             "Borrower retention rate",
+                             "Borrowers per loan officer",
+                             "Cost per loan",
+                             "Deposit accounts per staff member",
+                             "Deposits to loans",
+                             "Deposits to total assets",
+                             "Gross loan portfolio to total assets",
+                             "Loan loss rate",
+                             "Loan officers",
+                             "Loans per loan officer",
+                             "Loans per staff member",
+                             "Non earning liquid assets as a   of total assets",
+                             "Number of deposit accounts",
+                             "Number of loans outstanding",
+                             "Offices",
+                             "Operational self sufficiency",
+                             "Percent of female board members",
+                             "Percent of female borrowers",
+                             "Percent of female loan officers",
+                             "Percent of female managers",
+                             "Percent of female staff",
+                             "Percent of financed microenterprises that are start ups",
+                             "Personnel allocation ratio",
+                             "Personnel expense  assets",
+                             "Personnel expense  loan portfolio",
+                             "Portfolio at risk  gt  90 days",
+                             "Profit margin",
+                             "Risk coverage",
+                             "Staff turnover rate",
+                             "Total expense  assets",
+                             "Yield on gross portfolio  real "),
+                  selected = 'Operating expense  assets'),
+      textOutput('text1')
+    ),
+
+    # Show a plot of the generated distribution
+    mainPanel(
+      plotOutput("plot1"),
+      h4('Raw data'),
+      tableOutput('table1')
+    )
+  )
+))

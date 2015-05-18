@@ -1,0 +1,16 @@
+{
+    "contents" : "#################\n# PRE SESSION\n#################\n\n# TUTORIAL: http://shiny.rstudio.com/articles/shinyapps.html\n\n#devtools::install_github('rstudio/shinyapps')\nlibrary(shinyapps)\n\n# Due to security settings at FDOH:\noptions(shinyapps.service_url = \"http://api.shinyapps.io/v1\")\n\nshinyapps::setAccountInfo(\n  name=\"joebrew\", \n  token=\"C4D0E22C484D74139A50EDE2BA1887F4\", \n  secret=\"zbbeauXf53w0Qnpxcx1RREIdIUJAaRaVjZLcN/Id\")\n\n##################\n# RUN\n##################\n\nsetwd(\"c:/users/brewjr/documents/ShinyApps/budgetcalc\")\nsetwd(\"c:/users/brewjr/documents/ShinyApps/powercalc\")\nsetwd(\"c:/users/brewjr/documents/ShinyApps/controlfluteams\")\nsetwd(\"c:/users/brewjr/documents/ShinyApps/sliv\")\nsetwd(\"c:/users/brewjr/documents/ShinyApps/heartpine\")\n\n\nlibrary(shiny)\nrunApp()\n\n\n###################\n# DEPLOY\n###################\nlibrary(shiny)\nlibrary(shinyapps)\ndeployApp()\n\n\nterminateApp(appName = 'roberts', account = 'joebrew', quiet = FALSE)\n\n",
+    "created" : 1431976184366.000,
+    "dirty" : false,
+    "encoding" : "ISO8859-1",
+    "folds" : "",
+    "hash" : "2141143859",
+    "id" : "DF3B8019",
+    "lastKnownWriteTime" : 1431976463,
+    "path" : "~/ShinyAppsAuth/auth_run_deploy.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

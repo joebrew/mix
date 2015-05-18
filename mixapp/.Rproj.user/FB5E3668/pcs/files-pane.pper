@@ -1,0 +1,9 @@
+{
+    "path" : "~/mix/mixapp",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

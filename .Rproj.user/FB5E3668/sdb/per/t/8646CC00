@@ -1,0 +1,17 @@
+{
+    "contents" : "library(RColorBrewer)\n\n### READ IN DATA\nmix <- read.csv('mix-data-full.csv',\n                stringsAsFactors = FALSE)\n\n### CLEAN UP NUMERIC COLUMNS\nnumeric_columns <- c(1,4,7:36, 38:45, 48:50, 52:61, 63:73, 77, 79, 82, 83)\n\nfor (j in numeric_columns){\n  # isolate column\n  column <- mix[,j]\n  # remove commas and percentage signs\n  column <- gsub(',|%', '', column)\n  mix[,j] <- as.numeric(column)\n}\n\n### DEFINE FUNCTION FOR SUBSETTING\nsub_mix <- function(Region = 'Africa',\n                    Year = NULL){\n  # Subset region\n  sub_data <- mix[which(mix$Region == Region),]\n  \n  # Subset for years\n  if(!is.null(Year)){\n    if(length(Year) < 2){\n      Year <- rep(Year, 2)\n    }\n    sub_data <- sub_data[which(sub_data$Fiscal.Year >= Year[1] &\n                                 sub_data$Fiscal.Year <= Year[2]),]\n  }\n  return(sub_data)\n}\n\nafrica <- sub_mix('Africa', c(2005, 2015))\n\n### DEFINE FUNCTION FOR VISUALIZING OUTCOMES OF INTEREST\n\npossibles <- gsub('[.]', ' ', names(mix)[numeric_columns])\ncat(paste0('\"', possibles, '\",\\n'))\n\noutcome <- function(var = 'Gross Loan Portfolio', \n                    data = mix){\n  # Put in R space format\n  var_formatted <- gsub(' ', '.', var)\n  # Put in dataframe\n  val <- data[,var_formatted]\n  \n  # Visualize\n  h <- hist(val,\n            breaks = 200,\n            plot = FALSE)\n  \n  cols <- colorRampPalette(brewer.pal(9, 'Spectral'))(length(h$mids))\n  plot(h,\n       col = adjustcolor(cols, alpha.f = 0.6),\n       border = NA,\n       main = var)\n}\noutcome()\n",
+    "created" : 1431971063974.000,
+    "dirty" : false,
+    "encoding" : "ISO8859-1",
+    "folds" : "",
+    "hash" : "4188250736",
+    "id" : "8646CC00",
+    "lastKnownWriteTime" : 1431973711,
+    "path" : "~/mix/mix.R",
+    "project_path" : "mix.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

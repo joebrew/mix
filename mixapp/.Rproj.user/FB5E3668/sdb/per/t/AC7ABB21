@@ -1,0 +1,16 @@
+{
+    "contents" : "\n# This is the server logic for a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\n\nsource('helpers.R')\n\nshinyServer(function(input, output) {\n  \n  df <- reactive({\n    x <- sub_mix(input$region, input$range)\n    x$MFI.name <- gsub(\"[^a-zA-Z0-9]\",\"\",x$MFI.name )\n    x\n  })\n\n    output$plot1 <- renderPlot({\n      df <- df()\n      outcome(var = input$var,\n              data = df)\n      \n    })\n  \n  output$table1 <- renderTable({\n    var_formatted <- gsub(' ', '.',input$var)\n    x <- df()[,c('MFI.name', 'Fiscal.Year', var_formatted)]\n    names(x) <- gsub('[.]', ' ', names(x))\n    x\n  })\n  \n  output$text1 <- renderText({\n    paste0(length(unique(df()$MFI.name)), ' MFIs selected')\n  })\n  \n  output$text2 <- renderPrint({\n    df <- df()\n    # Put in R space format\n    var_formatted <- gsub(' ', '.',input$var)\n    # Put in dataframe\n    val <- df[,var_formatted]\n    summary(val)\n    \n  })\n})\n",
+    "created" : 1431973757028.000,
+    "dirty" : false,
+    "encoding" : "ISO8859-1",
+    "folds" : "",
+    "hash" : "1703850002",
+    "id" : "AC7ABB21",
+    "lastKnownWriteTime" : 1431978172,
+    "path" : "~/mix/mixapp/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
